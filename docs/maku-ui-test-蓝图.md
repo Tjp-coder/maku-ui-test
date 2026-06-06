@@ -189,8 +189,8 @@ GitHub：github.com/Tjp-coder/maku-ui-test
 > 完成一步就来更新这里
 
 - [x] 步骤 1：决策确认
-- [ ] 步骤 2：环境准备 + 项目初始化
-- [ ] 步骤 3：hello world
+- [x] 步骤 2：环境准备 + 项目初始化
+- [x] 步骤 3：hello world
 - [ ] 步骤 4：单文件登录测试
 - [ ] 步骤 5：分层重构
 - [ ] 步骤 6：harness 基础设施

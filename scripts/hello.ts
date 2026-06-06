@@ -19,10 +19,11 @@ async function main() {
   console.log('=== Maku UI Test - Hello World ===');
   console.log(`目标地址：${TARGET_URL}`);
   console.log(`模型名称：${process.env.MIDSCENE_MODEL_NAME ?? '未配置'}`);
-  console.log(`API地址：${process.env.OPENAI_BASE_URL ?? '未配置'}`);
+  console.log(`模型族  ：${process.env.MIDSCENE_MODEL_FAMILY ?? '未配置'}`);
+  console.log(`API地址 ：${process.env.MIDSCENE_MODEL_BASE_URL ?? '未配置'}`);
 
-  if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_dashscope_api_key_here') {
-    console.error('❌ 请先在 .env.local 中配置 OPENAI_API_KEY（填入 DashScope API Key）');
+  if (!process.env.MIDSCENE_MODEL_API_KEY) {
+    console.error('❌ 请先在 .env.local 中配置 MIDSCENE_MODEL_API_KEY（填入 DashScope API Key）');
     process.exit(1);
   }
 
@@ -53,7 +54,7 @@ async function main() {
     console.log('----------------------------------');
     console.log('Node   :', process.version);
     console.log('浏览器 : Chromium (Playwright)');
-    console.log('AI模型 :', process.env.MIDSCENE_MODEL_NAME);
+    console.log('AI模型 :', process.env.MIDSCENE_MODEL_NAME, `(${process.env.MIDSCENE_MODEL_FAMILY})`);
     console.log('----------------------------------');
     console.log('🎉 五件套全部联通，可以继续步骤 4！');
   } catch (err) {
