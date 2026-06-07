@@ -12,6 +12,7 @@ test('maku 登录', async ({ page }) => {
 
   const auth = new AuthService(page);
   await auth.login('admin', 'admin');
+  await auth.destroy();
 
   const agent = new PlaywrightAgent(page);
   await agent.aiWaitFor('左侧出现导航菜单', { timeoutMs: 30_000 });

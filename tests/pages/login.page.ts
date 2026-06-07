@@ -35,6 +35,11 @@ export class LoginPage {
     return this;
   }
 
+  async getErrorMessage(): Promise<string> {
+    await this.agent.aiWaitFor('登录表单下方出现错误提示文字', { timeoutMs: 8000 });
+    return await this.agent.aiString('登录表单下方显示的错误提示文字内容');
+  }
+
   async destroy(): Promise<void> {
     await this.agent.destroy();
   }

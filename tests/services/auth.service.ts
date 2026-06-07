@@ -15,6 +15,13 @@ export class AuthService {
       .then(p => p.inputPassword(password))
       .then(p => p.inputCaptcha(captcha))
       .then(p => p.clickLoginButton());
+  }
+
+  async getErrorMessage(): Promise<string> {
+    return this.loginPage.getErrorMessage();
+  }
+
+  async destroy(): Promise<void> {
     await this.loginPage.destroy();
   }
 }
