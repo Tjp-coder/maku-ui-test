@@ -1,3 +1,8 @@
+---
+name: ui-test-harness
+description: 调度 analyzer/generator/verifier 三个子agent，按状态机流程完成 UI 自动化测试用例的分析、实现、验证。用户说"写测试"、"写用例"、"生成case"时触发。
+---
+
 # UI Test Harness - 总控状态机
 
 ## 角色定义

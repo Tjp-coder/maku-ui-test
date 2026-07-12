@@ -44,8 +44,10 @@ tools: Read, Write, Edit, Glob
 ```
 case  → 只调 service 方法，不出现 aiTap/aiInput/page.locator/new XxxPage
 service → 只调 page 方法，不出现 aiTap/aiInput/page.locator
-page  → 只调 Midscene API（aiTap/aiInput/aiQuery/aiAssert 等）
-        元素描述必须带容器上下文："登录表单里的「用户名」输入框"
+page  → 优先原生 Playwright 定位（page.locator(...).click()/.fill()），
+        仅三种例外场景用 Midscene API（aiTap/aiInput/aiQuery/aiAssert 等）——见
+        docs/maku-ui-test架构规范.md「2.4 定位策略选型原则」
+        用 AI 定位时，元素描述必须带容器上下文："登录表单里的「用户名」输入框"
 ```
 
 ## 已有函数保护机制
@@ -86,3 +88,8 @@ expect(status).toBe(UserStatus.ACTIVE);  // 不要写 '正常'
 - 禁止在 case/service 层出现任何 Midscene API 调用
 - 禁止写"未来可扩展"的空方法或占位接口
 - 禁止修改 `login.page.ts` / `auth.service.ts` 已有方法体（除非 approved_modifications 明确列出）
+- retry_fix 时不要用 aiAction 合并多步，aiAction 是最后手段，单步操作一律用 aiTap/aiInput 这类细粒度方法。
+- 如果是 navigation 失败，优先考虑用 page.goto 跳过中间步骤
+- 决定 page 层某个交互该用 aiTap/aiInput 还是 page.locator 时，先查 docs/maku-ui-test架构规范.md
+  「2.4 定位策略选型原则」——默认原生定位，只有三种例外场景才用 AI 定位。具体反例参考
+  docs/failure_cases/locator-pitfalls.md。
